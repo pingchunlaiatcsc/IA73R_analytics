@@ -807,7 +807,7 @@ SUB XLS1
 	XL.CELLS(2,12).VALUE = "=SUMIFS(儲位彙總!B:B,儲位彙總!M:M,""定尺短"",儲位彙總!J:J,""01"",儲位彙總!N:N,"""")"
 
 	XL.CELLS(3,13).VALUE = "外銷17"
-	XL.CELLS(4,13).VALUE = "=(SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001"",IA73!AD:AD,"" ＳＡＬＺ "") + SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001"",IA73!AD:AD,"" ＴＨＹＳ ""))/1000"
+	XL.CELLS(4,13).VALUE = "=(SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001"") + SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001""))/1000"
 
 	XL.CELLS(1,13).VALUE = "外銷07"
 	XL.CELLS(2,13).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<13000"")/1000-M4"
