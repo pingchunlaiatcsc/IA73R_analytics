@@ -807,7 +807,7 @@ SUB XLS1
 	XL.CELLS(2,12).VALUE = "=SUMIFS(儲位彙總!B:B,儲位彙總!M:M,""定尺短"",儲位彙總!J:J,""01"",儲位彙總!N:N,"""")"
 
 	XL.CELLS(3,13).VALUE = "外銷17"
-	XL.CELLS(4,13).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001"")/1000"
+	XL.CELLS(4,13).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001"",IA73!C:C,""<>QJ*"")/1000"
 
 	XL.CELLS(1,13).VALUE = "外銷07"
 	XL.CELLS(2,13).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<13000"")/1000-M4"
@@ -1257,25 +1257,25 @@ ON ERROR RESUME NEXT
  
 		XL.ActiveSheet.PivotTables("樞紐分析表4").PivotFields("庫").EnableMultiplePageItems = True
 
-		XL.ActiveWorkbook.PivotCaches.Create (1,"儲位彙總!R1C1:R1000C15", 3).CreatePivotTable "儲位使用!R16C1", "樞紐分析表5", 3
+		' XL.ActiveWorkbook.PivotCaches.Create (1,"儲位彙總!R1C1:R1000C15", 3).CreatePivotTable "儲位使用!R16C1", "樞紐分析表5", 3
   
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").Orientation = 3
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").Position = 1
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").Orientation = 3
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").Position = 1
 
-		XL.ActiveSheet.PivotTables("樞紐分析表5").AddDataField XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("儲區總重量"), "計數 - 片數",  -4112
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").AddDataField XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("儲區總重量"), "計數 - 片數",  -4112
 
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Row").Orientation =1
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Row").Position = 1
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Row").Orientation =1
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Row").Position = 1
 
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Column").Orientation = 2
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Column").Position = 1
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Column").Orientation = 2
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("Column").Position = 1
  
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("01").Visible = False
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("17").Visible = False
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("(blank)").Visible = False
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("04").Visible = False
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("01").Visible = False
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("17").Visible = False
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("(blank)").Visible = False
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").PivotItems("04").Visible = False
  
-		XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").EnableMultiplePageItems = True
+		' XL.ActiveSheet.PivotTables("樞紐分析表5").PivotFields("庫").EnableMultiplePageItems = True
 
 		XL.ActiveWorkbook.PivotCaches.Create (1,"儲位彙總!R1C1:R1000C15", 3).CreatePivotTable "儲位使用!R32C1", "樞紐分析表6", 3
   
