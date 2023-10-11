@@ -447,40 +447,40 @@ CLASS IA
         SQL = "Select loc, 提單, sum(單重) as 重量, sum(片1) as 片數 INTO 儲區_各提單 from IA73 group by loc, 提單" 
         CONN.EXECUTE(SQL)
         
-        SQL = "Select 庫別, sum(疊重)/1000 as 內銷總重 INTO 儲區_內銷存量 from IA73 WHERE 訂單別 = '內銷' AND 庫別  IN( '01','07','17') AND OP = ' ' group by 庫別" 
+        SQL = "Select 庫別, sum(疊重)/1000 as 內銷總重 INTO 儲區_內銷存量 from IA73 WHERE 訂單別 = '內銷' AND 庫別  IN( '01','07','17','90') AND OP = ' ' group by 庫別" 
         CONN.EXECUTE(SQL)
         
-        SQL = "Select 庫別, sum(疊重)/1000 as 外銷總重 INTO 儲區_外銷存量 from IA73 WHERE 訂單別 = '外銷' AND 庫別  IN( '01','07','17') AND OP = ' ' group by 庫別" 
+        SQL = "Select 庫別, sum(疊重)/1000 as 外銷總重 INTO 儲區_外銷存量 from IA73 WHERE 訂單別 = '外銷' AND 庫別  IN( '01','07','17','90') AND OP = ' ' group by 庫別" 
         CONN.EXECUTE(SQL)
         
-        SQL = "Select 庫別, sum(疊重)/1000 as 內部總重 INTO 儲區_內部存量 from IA73 WHERE 訂單別 = '內部' AND 庫別  IN( '01','07','17') AND OP = ' ' group by 庫別" 
+        SQL = "Select 庫別, sum(疊重)/1000 as 內部總重 INTO 儲區_內部存量 from IA73 WHERE 訂單別 = '內部' AND 庫別  IN( '01','07','17','90') AND OP = ' ' group by 庫別" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, MAX(厚) as 厚MAX, MIN(厚) as 厚MIN,  MAX(寬) as 寬MAX, MIN(寬) as 寬MIN,sum(疊重)/1000 as 總重,sum(放行重)/1000 as 放行 INTO 儲區_LY庫存 from IA73 WHERE 庫別  IN( '01','07','17') group by loc" 
+        SQL = "Select loc, MAX(厚) as 厚MAX, MIN(厚) as 厚MIN,  MAX(寬) as 寬MAX, MIN(寬) as 寬MIN,sum(疊重)/1000 as 總重,sum(放行重)/1000 as 放行 INTO 儲區_LY庫存 from IA73 WHERE 庫別  IN( '01','07','17','90') group by loc" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, sum(疊重)/1000 as LY庫存重 INTO 儲區_LY重 from IA73 WHERE 庫別  IN( '01','07','17') AND OP <> ' ' group by loc" 
+        SQL = "Select loc, sum(疊重)/1000 as LY庫存重 INTO 儲區_LY重 from IA73 WHERE 庫別  IN( '01','07','17','90') AND OP <> ' ' group by loc" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, sum(疊重)/1000 as 一般LY重 INTO 儲區_一般LY from IA73 WHERE 庫別  IN( '01','07','17') AND OP = '?' group by loc" 
+        SQL = "Select loc, sum(疊重)/1000 as 一般LY重 INTO 儲區_一般LY from IA73 WHERE 庫別  IN( '01','07','17','90') AND OP = '?' group by loc" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, sum(疊重)/1000 as 超長寬LY重 INTO 儲區_超長寬LY from IA73 WHERE 庫別  IN( '01','07','17') AND OP = 'W' group by loc" 
+        SQL = "Select loc, sum(疊重)/1000 as 超長寬LY重 INTO 儲區_超長寬LY from IA73 WHERE 庫別  IN( '01','07','17','90') AND OP = 'W' group by loc" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, sum(疊重)/1000 as 中高碳LY重 INTO 儲區_中高碳LY from IA73 WHERE 庫別  IN( '01','07','17') AND OP = 'C' group by loc" 
+        SQL = "Select loc, sum(疊重)/1000 as 中高碳LY重 INTO 儲區_中高碳LY from IA73 WHERE 庫別  IN( '01','07','17','90') AND OP = 'C' group by loc" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, sum(疊重)/1000 as 特殊LY重 INTO 儲區_特殊LY from IA73 WHERE 庫別  IN( '01','07','17') AND OP = 'H' group by loc" 
+        SQL = "Select loc, sum(疊重)/1000 as 特殊LY重 INTO 儲區_特殊LY from IA73 WHERE 庫別  IN( '01','07','17','90') AND OP = 'H' group by loc" 
         CONN.EXECUTE(SQL)
 
-        SQL = "Select loc, sum(疊重)/1000 as 高強度重 INTO 儲區_高強度LY from IA73 WHERE 庫別  IN( '01','07','17') AND OP = 'E' group by loc" 
+        SQL = "Select loc, sum(疊重)/1000 as 高強度重 INTO 儲區_高強度LY from IA73 WHERE 庫別  IN( '01','07','17','90') AND OP = 'E' group by loc" 
         CONN.EXECUTE(SQL)
 
         SQL = "ALTER TABLE 儲區_LY庫存 ADD LY庫存 DOUBLE, 一般 DOUBLE, 超長寬 DOUBLE, 中高碳 DOUBLE, 特殊 DOUBLE, 高強度 DOUBLE"
         CONN.EXECUTE(SQL)
 
-        SQL = "Select 庫別, sum(疊重)/1000 as 儲區總重量, sum(放行重)/1000 as 放行總重量, sum(可出貨重)/1000 as 可出貨重量  INTO 儲區_各庫存量 from IA73 WHERE  庫別  IN( '01','07','17') group by 庫別" 
+        SQL = "Select 庫別, sum(疊重)/1000 as 儲區總重量, sum(放行重)/1000 as 放行總重量, sum(可出貨重)/1000 as 可出貨重量  INTO 儲區_各庫存量 from IA73 WHERE  庫別  IN( '01','07','17','90') group by 庫別" 
         CONN.EXECUTE(SQL)
        
         'SQL = "Select DISTINCT loc, 客戶, 提單 INTO 儲區_提單清單 from IA73  group by loc,  客戶, 提單 " 
@@ -776,26 +776,31 @@ SUB XLS1
 	XL.CELLS(2,5).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""內銷"",IA73!A:A,"" "")/1000"
 	XL.CELLS(3,5).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""07"",IA73!X:X,""內銷"",IA73!A:A,"" "")/1000"
 	XL.CELLS(4,5).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""17"",IA73!X:X,""內銷"",IA73!A:A,"" "")/1000"
+	XL.CELLS(4,5).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""90"",IA73!X:X,""內銷"",IA73!A:A,"" "")/1000"
 
    	XL.CELLS(1,6).VALUE = "外銷總重"
 	XL.CELLS(2,6).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "")/1000"
 	XL.CELLS(3,6).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""07"",IA73!X:X,""外銷"",IA73!A:A,"" "")/1000"
 	XL.CELLS(4,6).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""17"",IA73!X:X,""外銷"",IA73!A:A,"" "")/1000"
+	XL.CELLS(4,6).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""90"",IA73!X:X,""外銷"",IA73!A:A,"" "")/1000"
 
    	XL.CELLS(1,7).VALUE = "內銷可出"
 	XL.CELLS(2,7).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""01"",IA73!A:A,"" "",IA73!X:X,""內銷"")/1000"
 	XL.CELLS(3,7).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""07"",IA73!A:A,"" "",IA73!X:X,""內銷"")/1000"
 	XL.CELLS(4,7).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""17"",IA73!A:A,"" "",IA73!X:X,""內銷"")/1000"
+	XL.CELLS(4,7).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""90"",IA73!A:A,"" "",IA73!X:X,""內銷"")/1000"
 
    	XL.CELLS(1,8).VALUE = "外銷可出"
 	XL.CELLS(2,8).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""01"",IA73!A:A,"" "",IA73!X:X,""外銷"")/1000"
 	XL.CELLS(3,8).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""07"",IA73!A:A,"" "",IA73!X:X,""外銷"")/1000"
 	XL.CELLS(4,8).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""17"",IA73!A:A,"" "",IA73!X:X,""外銷"")/1000"
+	XL.CELLS(4,8).VALUE = "=SUMIFS(IA73!W:W,IA73!S:S,""90"",IA73!A:A,"" "",IA73!X:X,""外銷"")/1000"
 	
    	XL.CELLS(1,10).VALUE = "風電總重"
 	XL.CELLS(2,10).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""內銷"",IA73!AC:AC,""S355M*"",IA73!AF:AF,"""")/1000"
 	XL.CELLS(3,10).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""07"",IA73!X:X,""內銷"",IA73!AC:AC,""S355M*"",IA73!AF:AF,"""")/1000"
 	XL.CELLS(4,10).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""17"",IA73!X:X,""內銷"",IA73!AC:AC,""S355M*"",IA73!AF:AF,"""")/1000"
+	XL.CELLS(4,10).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""90"",IA73!X:X,""內銷"",IA73!AC:AC,""S355M*"",IA73!AF:AF,"""")/1000"
 	XL.CELLS(5,10).FormulaR1C1 = "=SUM(R[-4]C:R[-1]C)"
 	XL.CELLS(6,10).FormulaR1C1 = "=R[-1]C/R5C2"
 	XL.CELLS(6,10).Style = "Percent"
@@ -812,33 +817,44 @@ SUB XLS1
 	XL.CELLS(1,13).VALUE = "外銷07"
 	XL.CELLS(2,13).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<13000"")/1000-M4"
 
-	XL.CELLS(3,14).VALUE = "=""各庫庫存：01庫：""& ROUND(B2,0) & ""噸、07庫："" & ROUND(B3,0) & ""噸、17庫："" & ROUND(B4,0) & ""噸，總庫存："" & ROUND(B5,0) & ""噸。"""
+	XL.CELLS(3,14).VALUE = "=""各庫庫存：01庫：""& ROUND(B2,0) & ""噸、07庫："" & ROUND(B3,0) & ""噸、17庫："" & ROUND(B4,0) & ""噸"""
+	XL.CELLS(4,14).VALUE = "=""90庫："" & ROUND(B5,0) & ""噸，總庫存："" & ROUND(B6,0) & ""噸。"""
 	'XL.CELLS(4,14).VALUE = "=""   待外搬量：07庫(內銷"" & ROUND(K2,0) & ""噸+外銷"" & ROUND(M2,0) & ""噸)、17庫("" & ROUND(L2,0) & ""噸)。"""
-	XL.CELLS(4,14).VALUE = "=""   待外搬量：07庫(內銷"" & ROUND(K2,0) & ""噸+外銷"" & ROUND(M2,0) & ""噸)、17庫(內銷"" & ROUND(L2,0) & ""噸+外銷"" & ROUND(M4,0) & ""噸)。"""
+	XL.CELLS(5,14).VALUE = "=""   待外搬量：07庫(內銷"" & ROUND(K2,0) & ""噸+外銷"" & ROUND(M2,0) & ""噸)、17庫(內銷"" & ROUND(L2,0) & ""噸+外銷"" & ROUND(M4,0) & ""噸)。"""
 	'XL.CELLS(5,14).VALUE = "=""   風電庫存：01庫："" & ROUND(J2,0) & ""噸、07庫："" & ROUND(J3,0) & ""噸、17庫："" & ROUND(J4,0) & ""噸。"""
 	
 	STR = ""
+    
 	IF XL.CELLS(2,10).VALUE > 0 THEN
 	    STR = "=""   風電庫存：01庫："" & ROUND(J2,0) & ""噸"
 	    IF XL.CELLS(3,10).VALUE > 0 THEN
 		    STR = STR & "、07庫："" & ROUND(J3,0) & ""噸"
 		    IF XL.CELLS(4,10).VALUE > 0 THEN
 			    STR = STR & "、17庫："" & ROUND(J4,0) & ""噸"
+                IF XL.CELLS(5,10).VALUE > 0 THEN
+			        STR = STR & "、90庫："" & ROUND(J5,0) & ""噸"
+			    END IF
 			END IF
 		ELSEIF XL.CELLS(4,10).VALUE > 0 THEN
 		    STR = STR & """、17庫："" & ROUND(J4,0) & ""噸"
 		END IF
 	ELSEIF XL.CELLS(3,10).VALUE > 0 THEN
 	    STR = "=""   風電庫存：07庫："" & ROUND(J3,0) & ""噸"
-		IF XL.CELLS(7,10).VALUE > 0 THEN
+		IF XL.CELLS(4,10).VALUE > 0 THEN
 		    STR = STR & "、17庫："" & ROUND(J4,0) & ""噸"
+            IF XL.CELLS(5,10).VALUE > 0 THEN
+		        STR = STR & "、90庫："" & ROUND(J5,0) & ""噸"
+		    END IF
 		END IF
 	ELSEIF  XL.CELLS(4,10).VALUE > 0 THEN
 	    STR = "=""   風電庫存：17庫："" & ROUND(J4,0) & ""噸"
+        IF XL.CELLS(5,10).VALUE > 0 THEN
+            STR = STR & "、90庫："" & ROUND(J5,0) & ""噸"
+        END IF
 	END IF
 	
 	IF XL.CELLS(2,10).VALUE > 0 OR XL.CELLS(3,10).VALUE > 0 OR XL.CELLS(4,10).VALUE > 0 THEN
-		XL.CELLS(5,14).VALUE = STR & "。"""
+		XL.CELLS(6,14).VALUE = STR & "。"""
 	END IF
 	
     XL.Cells.Select	
@@ -1360,9 +1376,9 @@ ON ERROR RESUME NEXT
         XL.Cells.EntireColumn.AutoFit
         
            FOR J = 2 TO XL.ActiveWorkbook.Worksheets("各庫存量").UsedRange.Columns.Count       
-           XL.CELLS(5,J).FormulaR1C1 = "=SUM(R[-4]C:R[-1]C)"
-		   XL.CELLS(6,J).FormulaR1C1 = "=R[-1]C/R5C2"
-		   XL.CELLS(6,J).Style = "Percent"
+           XL.CELLS(6,J).FormulaR1C1 = "=SUM(R[-4]C:R[-1]C)"
+		   XL.CELLS(7,J).FormulaR1C1 = "=R[-1]C/R5C2"
+		   XL.CELLS(7,J).Style = "Percent"
      
          NEXT
          
