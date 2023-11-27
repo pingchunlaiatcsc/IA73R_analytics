@@ -160,7 +160,11 @@ CLASS IA
 				
         'SET F1 = FSO.OPENTEXTFILE(DIR & "IA73R.TXT")
 		DIM pathFileName
-		pathFileName = SelectFile()
+        IF FSO.FileExists("IA73R.TXT") THEN 
+            pathFileName = "IA73R.TXT"
+        ELSE
+		    pathFileName = SelectFile()
+        END IF
 		'MsgBox(pathFileName)
 		WSCRIPT.SLEEP 1000
 		IF pathFileName = "" THEN
@@ -698,6 +702,7 @@ CLASS IA
 		XL.CELLS(1,13).VALUE="型態"
 		XL.CELLS(1,14).VALUE="訂單別"
 		XL.CELLS(1,15).VALUE="可出貨"
+		XL.CELLS(1,20).VALUE="< 寶林 >"
 	
 'MSGBOX ""
 
@@ -730,7 +735,8 @@ CLASS IA
 		NEXT
 
         XL.CELLS(K,15).VALUE="=G" & K & "/B" & K
-
+        XL.CELLS(K,20).VALUE="=IF(R" & K & "=T1,1,0)*B" & K 
+        '=IF(R32=U1,1,0)*B32
 	NEXT
     		
       XL.Columns("O:O").Select
@@ -809,7 +815,11 @@ SUB XLS1
 	XL.CELLS(2,11).VALUE = "=SUMIFS(儲位彙總!B:B,儲位彙總!M:M,""定尺長"",儲位彙總!J:J,""01"",儲位彙總!N:N,"""")"
 
 	XL.CELLS(1,12).VALUE = "定尺短"
-	XL.CELLS(2,12).VALUE = "=SUMIFS(儲位彙總!B:B,儲位彙總!M:M,""定尺短"",儲位彙總!J:J,""01"",儲位彙總!N:N,"""")"
+	XL.CELLS(2,12).VALUE = "=SUMIFS(儲位彙總!B:B,儲位彙總!M:M,""定尺短"",儲位彙總!J:J,""01"",儲位彙總!N:N,"""")+L4"
+
+	XL.CELLS(3,12).VALUE = "=儲位彙總!T1"
+	XL.CELLS(4,12).VALUE = "=SUMIFS(儲位彙總!T:T,儲位彙總!J:J,""01"")"
+
 
 	XL.CELLS(3,13).VALUE = "外銷17"
 	XL.CELLS(4,13).VALUE = "=SUMIFS(IA73!U:U,IA73!S:S,""01"",IA73!X:X,""外銷"",IA73!A:A,"" "",IA73!H:H,""<9001"")/1000"
@@ -860,7 +870,7 @@ SUB XLS1
     XL.Cells.Select	
     XL.Cells.EntireColumn.AutoFit
 
-END SUB    
+END SUB   
 
     SUB RW_DATA
 
